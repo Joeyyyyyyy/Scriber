@@ -1,0 +1,116 @@
+Scriber User Manual
+
+Welcome to the Scriber, a comprehensive tool designed to help with timestamping, file management, and text editing. This manual will guide you through the features and functionalities of the program to maximize your efficiency and productivity.
+
+
+-----------------------------------------------------------------------------------
+
+
+Features Overview
+
+1. Auto-Save Functionality: Automatically saves your file at regular intervals, ensuring your work is never lost.
+
+2. Backup Save Functionality: Secure backup saves to prevent data loss.
+
+3. Pause-Resume Button: Tracks the time lost when paused and adjusts the timestamp accordingly.
+
+4. File Management (Open/Save): Easily open and save files with the file management system.
+
+5. Time Calculations and Formatting: Insert timestamps, calculate time differences, and format them in the text.
+
+6. Mention and Tag Insertion: Quickly insert pre-defined tags and mentions for quick reference in your notes.
+
+7. Word Checker: Highlights American words to maintain consistency in language style.
+
+8. Undo Feature: The program allows undoing actions, improving editing convenience.
+
+9. Context Menu: Right-click to access cut, copy, and paste options.
+
+10. Toolbar: Access frequently used functions from the toolbar.
+
+11. Format Enhancements: Supports formatted headings and timestamps with asterisks.
+
+12. Exit Confirmation: Prevent accidental closure with an exit confirmation prompt.
+
+13. Export to Word: Helps export timestamps to MS Word in the required format. CTRL-Q also does this for general purposes
+
+14. Report Generator: Helps generate an extensive report about all the topics that were covered.
+
+
+-----------------------------------------------------------------------------------
+
+
+Using Scriber:
+
+1. File Management: Opening and Saving Files
+Open File: Access the file menu and choose "Open" to load a .txt file into the editor.
+Save File: Use the "Save" option from the file menu or press Ctrl + S to save your work. If no file is currently open, you will be prompted to save as a new file.
+Backup Save: Files are securely backed up in a designated directory with a timestamped filename.
+
+2. Auto-Save
+This feature saves your work automatically in the background to prevent data loss. You do not need to manually trigger this, but always save your work before closing.
+
+3. Pause-Resume Feature
+Press the Pause button to halt time tracking (useful during breaks). The button changes to Resume.
+When resumed, the program calculates and adjusts the total time lost during the pause and reflects it in your timestamps.
+
+4. Setting Event Start Time
+Click the Start Time button on the toolbar to set a starting time. By default, it is set to 2:30pm.
+You can modify the starting time and the elapsed time will be calculated based on the difference from this point.
+
+5. Text Editing and Formatting
+Insert Default Text: The app starts with default content containing event details and timestamp examples. This can be edited as needed.
+Headings and Timestamps: Automatically formatted with asterisks for easy identification.
+Brackets Replacement: Type () in your text, and the program will replace it with the current timestamp and elapsed time.
+
+6. Mentions and Tags
+Use the Mentions dropdown to insert predefined text for trainers or delegates.
+Use the Tags dropdown to insert session activities or event markers such as "Break," "Exercise," or "Story."
+
+7. Word Checker
+Trigger the Word Checker using the file menu or Ctrl + W. This feature highlights American English words from a predefined list.
+Re-enable or disable this by clicking the "Word Checker" option in the menu.
+
+8.ProofReader
+Reads the entire document and alerts the user if there are repeated timestamps or ones with incorrect formatting.
+
+9.Export to Word
+Converts the file into Rich Text Format, removes asterisks and boldens the text that was surrounded by asterisks. After performing these tasks, the text is copied to the device's clipboard.
+
+10. Undo Feature
+If you make a mistake, you can undo your last action with Ctrl + Z.
+
+11. Custom Context Menu
+Right-click anywhere in the text area to bring up a context menu for:
+Copy: Copy selected text.
+Cut: Cut selected text.
+Paste: Paste from the clipboard.
+
+12. Exit Confirmation
+Before closing the application, you will be prompted to save your work. This ensures no progress is lost accidentally.
+
+13. Generate Report
+This advanced feature gets an extensive report on the event ready with the click of a button.
+
+Advanced Features
+
+1. Time Lost Calculation
+You can also manually input the time lost during breaks by selecting Time Lost from the file menu. If you didn't use the pause button properly.
+The program will adjust the timestamp calculations based on the input, ensuring accurate session tracking.
+
+2. Replace Brackets with Time
+If you type () in the text area, it will automatically be replaced with the current time in *HH:MM AM/PM* (elapsed time) format.
+
+
+-----------------------------------------------------------------------------------
+
+
+Shortcuts
+
+Ctrl + S: Save your work.
+Ctrl + W: Toggle the word checker.
+Ctrl + Z: Undo the last action.
+Ctrl + Q: Export to Word.
+
+
+-----------------------------------------------------------------------------------

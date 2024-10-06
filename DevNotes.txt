@@ -1,0 +1,154 @@
+Developer Notes
+Application Name: Scriber
+
+Welcome to the Comprehensive Documentation for the Scriber Application.
+
+This software is designed specifically for enhancing the efficiency of video documentation during seminars and sessions. Its primary aim is to streamline the documentation process by automating time-stamping, allowing users to concentrate fully on content rather than monitoring the clock. By eliminating the need to constantly check the time, the application reduces distractions and minimizes the risk of human error in timestamp recording.
+
+Scriber automatically generates timestamps, sequence tags, and mentions according to a pre-defined format, thereby saving users from extensive formatting tasks. This makes it an ideal tool for those seeking to achieve meticulous and precise documentation of live events.
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+Version History & Key Features:
+
+1.7:
+Updated the format of the heading and timestamps for consistency.
+Added exit confirmation to the File menu, ensuring user data protection before closing.
+
+1.8:
+Introduced an auto-save feature, automatically preserving user data whenever a timestamp is documented.
+
+1.9:
+Enhanced readability by adding asterisks to the heading and timestamps.
+
+2.1:
+Implemented a backup save function to safeguard against accidental data loss.
+
+2.2:
+Added a dropdown menu for start time input, dynamically calculating and displaying the hrmin value.
+
+2.3:
+Integrated sequence tag reference and mention dropdown menus, improving the efficiency of content tagging.
+
+3.0:
+Redesigned the entire user interface for a modern look and feel, resulting in the removal of certain outdated buttons.
+
+3.1:
+Fixed an issue where canceling the file open operation could lead to errors.
+
+3.2:
+Added a keyboard shortcut (Ctrl+S) for quick and easy file saving.
+
+3.3:
+Introduced a File dropdown menu for streamlined file operations.
+Changed the start time input from a dropdown menu to a more user-friendly button.
+
+3.4:
+Resolved an issue with setting names in the dropdown menus, ensuring proper functionality.
+
+v3.5:
+Secured the backup process by ensuring files are saved properly in a dedicated backup directory.
+
+v3.6:
+Removed the colon from timestamps for formatting consistency.
+
+v3.7:
+Introduced a word checker functionality to highlight American English words.
+Fixed a bug where an extra space was inserted after timestamps.
+
+v3.75:
+Added a right-click context menu with options for copying, cutting, and pasting text.
+
+v3.85:
+Added a Pause-Resume button for tracking lost time during events.
+
+v3.95:
+Created a manual time difference changer that allows users to specify the amount of time lost during a session.
+
+v4.1:
+Added a display toggle for time elapsed and fixed minor glitches
+
+v4.2:
+Added an indicator for Start Time on the button
+
+v4.3:
+Added a RTF convertor to export to MS Word 
+
+v4.4:
+Added a basic proofreader
+
+v4.5:
+Report Generation Feature: Added functionality for generating and exporting event reports, improving post-session analysis.
+Backup Save Feature Update: Ensured that backup save works more reliably to prevent data loss.
+
+v4.6:
+Fixed Word Format Glitch: Resolved issues with the word format feature for more accurate document export.
+Enhanced Auto-save in Open Function: Auto-save now works seamlessly within the "Open" function for extra data protection when opening files.
+
+v4.7:
+Added Two Modes in Word Format Class: Introduced mode differentiation in the WordFormat class for greater customization.
+Mode 0: Specifically for handling timestamps.
+Mode 1: General-purpose formatting.
+Word Format Shortcut: Added CTRL+Q as a shortcut to activate Mode 1 for Word formatting.
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+Salient Features:
+
+User Interface: Modern and intuitive design using customtkinter.
+
+Format: The default text provided and the generated time stamps are pre-written according to our formatting guidelines.
+
+Text Management: Features an undo function, automatic backups, and auto-save to ensure data integrity and data safety.
+
+Time Management: Allows users to insert and format timestamps, while automating the calculation of time differences.
+
+File Handling: Supports opening, saving, and backup of files with user-friendly dialogs and confirmation prompts.
+
+Shortcuts & Menus: Includes keyboard shortcuts for saving, a dropdown menu for file operations, and convenient buttons for adding timestamps and tags.
+
+Text Handling: The application's text handling capabilities are robust, even with large-scale text replacements and edits.
+
+Recording Breaks: The pause/resume button helps simulate and take into account short breaks, breakout rooms, technical difficulties, etc.
+
+Export: Has an amazing feature that will export the document to MS Word in the required format
+
+ProofReader: Proofreads for formatting mistakes and repeated timestamps
+
+Exporting: Has powerful features to convert text to RTF and send copy it to clipboard.
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+Known Limitations:
+
+Copy-pasting large chunks of text containing the string '()' might cause unexpected behavior.
+
+Performance may degrade when handling very large text files, particularly those exceeding 5MB in size, which could potentially lead to lag or freezing.
+However, this won't happen since we will not be dealing with such enormous text files for the intended purposes.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+Optimal Performance Guidelines:
+
+Small Files (up to 100KB): The application runs seamlessly with small files, providing a smooth and responsive user experience. Ideal for short texts, notes, and quick edits without any performance concerns.
+
+Medium Files (100KB to 1MB): The application handles medium-sized files efficiently, with minimal lag during operations. Suitable for standard documents and code files, maintaining good performance for most typical use cases.
+
+Large Files (1MB to 5MB): While performance may slightly decrease, the application remains highly functional for larger text files. Users can expect reasonable responsiveness, making it well-suited for extensive notes and detailed documents.
+
+Very Large Files (over 5MB): The application is designed to manage large files with improved efficiency, though performance may vary depending on the size. Users can still work with substantial text volumes, though they may experience some lag during intensive operations.
+
+Text Manipulation: The application's text handling capabilities are robust, even with large-scale text replacements and edits. While performance might slow with extremely large data, the core functionality remains effective for comprehensive text management.
+
+Scrolling and Navigation: The application maintains good performance with file scrolling and navigation, even with sizable text content. Users will find the interface responsive and capable of handling extensive document navigation smoothly.
+
+
+-------------------------------------------------------------------------------------------------------------------
+
+
+Contact me: jjjj8912@gmail.com (Joel Joseph Justin)
