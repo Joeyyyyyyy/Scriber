@@ -248,7 +248,7 @@ class ReportGenerator:
         seperator="-"*40+"\n\n\n"
         report=report+seperator
         srtag={"Short break", "Short Break","Short Break Initiated","Short Break initiated", "Short break initiated", "Short Break Starts", "Short Break starts",
-               "Short break starts"}
+               "Short break ensues","Short Break Ensues","Short Break ensues","Short break starts"}
         brtag={"Breakout Rooms Instructions","Breakout Rooms instructions","Breakout rooms instructions","Breakout Rooms Instruction","Breakout Rooms instruction",
             "Breakout rooms instruction","Breakout Room Instruction","Breakout Room instruction",
             "Breakout room instruction",
