@@ -226,7 +226,6 @@ class ReportGenerator:
             string=event.string
             output_string=output_string+string+'\n\n'
             
-        #pyperclip.copy(output_string)
         return output_string
     
     def fullReport(self):
@@ -264,7 +263,6 @@ class ReportGenerator:
         id=1
         br=0
         for idx, event in enumerate(self.event_data_list):
-            """{self.id}) {self.sequence_tag} | {self.mention} | {self.timestamp}-{self.endtime} | {self.duration}"""
             if event.sequence_tag in tag:
                 if(tag=="Screen Share" and event.sequence_tag=="Share"):
                     pass
@@ -284,14 +282,12 @@ class ReportGenerator:
         if(id==1):
             return ""
         id=1
-        #print("\n\nContent:\n")
         report=report+"\n\nContent:\n\n"
         for event in self.event_data_list:
             if event.sequence_tag in tag:
                 if(tag=="Screen Share" and event.sequence_tag=="Share"):
                     pass
                 else:
-                    #print(str(id)+")"+event.content.strip())
                     report=report+str(id)+") "+event.content+"\n\n"
                     id=id+1
         return(report)    
