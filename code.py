@@ -1,44 +1,37 @@
-""""
-Developer Notes : 
-##The cursor stays in the same position as before
-##Might cause errors when copy pasting a huge chunk of text with () in it
-##Improved feature of adding hrmin text and a colon too
-##Adds default text
-##Asks for permission before closing
-##Added undo feature
-##(1.7)Updated format of the Heading
-##(1.7)Updated formatting of timestamps
-##(1.7)Added exit confirmation to the filebar exit
-##(1.8)Added auto-save feature 
-##(1.9)Added asterisks to the heading and timestamps
-##(2.1)Added backup save function 
-##(2.2)Added starting time dropdown menu and calculating hrmin value accordingly
-##(2.3)Added the sequence tag reference dropdown menu and mention dropdown menu 
-##(3.0)Changed up the whole look and feel and had to remove certain buttons
-##(3.1)Fixed open->cancel error
-##(3.2)Created Ctrl-S save shortcut
-##(3.3)Created File dropdown menu
-##(3.3)Changed start time from a dropdown menu to a button
-##(3.4)Fixed the set name issue in the dropdown menus
-##(3.5)Made Backups more secure
-##(3.6)Removed the colon in the timestamp
-##(3.7)Added word checker functionality
-##(3.7)Fixed the extra space bug after timestamps
-##(3.75)Popup menu on right click added
-##(3.85)Pause-Resume button added for video briefing
-##(3.95)Create Manual time difference changer
-##(4.1)Added a default text for pauses and resumes
-##(4.1)Added display time elapsed toggle feature
-##(4.1)Fixed minor glitch in time elapsed by decreasing its accuracy
-##(4.2)Displays start time on the button
-##(4.3)Corrected default text
-##(4.3)Added RTF Convertor custom library
-##(4.4)Added a basic roofreading functionality and an icon
-##(4.5)Added Report generation feature and updated backup save feature
-##(4.6)Fixed glitch in word format feature and also added auto save within open function for extra safety
-##(4.7)Created two modes in word format class and updated it to remove certain unneeded invisible chaaracters
-##(4.7)Word Format mode 1 is for general purpose while mode 0 is for timestamps
-##(4.7)Word Format mode 1 can be activated using shortcut Ctrl+T
+"""
+Developer Notes:
+##(1.1.0) Updated format of the heading
+##(1.1.0) Updated formatting of timestamps
+##(1.1.0) Added exit confirmation to the File menu
+##(1.2.0) Added auto-save feature
+##(1.3.0) Enhanced readability by adding asterisks to the heading and timestamps
+##(1.4.0) Implemented a backup save function
+##(1.5.0) Added dropdown menu for start time input
+##(1.6.0) Integrated sequence tag reference and mention dropdown menus
+##(2.0.0) Redesigned the entire user interface
+##(2.0.1) Fixed issue with file open operation error
+##(2.1.0) Added keyboard shortcut (Ctrl+S) for saving
+##(2.2.0) Introduced a File dropdown menu for file operations
+##(2.2.0) Changed start time input to a button
+##(2.2.1) Resolved issue with dropdown menu name settings
+##(2.3.0) Secured the backup process
+##(2.3.1) Removed colon from timestamps for consistency
+##(2.4.0) Added word checker for American English words
+##(2.4.0) Fixed extra space after timestamps
+##(2.4.1) Added right-click context menu for text operations
+##(2.5.0) Added Pause-Resume button for tracking lost time
+##(2.6.0) Created a manual time difference changer
+##(3.0.0) Added display toggle for time elapsed
+##(3.1.0) Added Start Time indicator on the button
+##(3.2.0) Added RTF converter to export to MS Word
+##(3.3.0) Added basic proofreader
+##(3.4.0) Added event report generation feature
+##(3.4.0) Improved backup save reliability
+##(3.4.1) Fixed Word format glitch
+##(3.4.1) Enhanced auto-save in the open function
+##(3.5.0) Added modes in WordFormat class
+##(3.5.0) Added shortcut CTRL+Q for Word formatting
+##(3.5.1) Added more words in the american words list and removed comments
 """
 
 import tkinter as tk
