@@ -329,15 +329,20 @@ class ReportGenerator:
         report+="TOPICS COVERED\n\n"
         id=1
         br=0
-        totalduration=0
+        totalduration=5
         totalhr=0
-        totalmin=0
+        totalmin=5
         hr=0
         min=0
         losthr=0
         lostmin=0
         lost=0
+        bno=0
         durevent=None
+        
+        report=report+str(id)+") "+("*"+"Introductions"+"*") +" ("+"5min"+")"+"\n"
+        id=id+1
+        
         for idx, event in enumerate(self.event_data_list):
             tag=event.sequence_tag
             if tag in  tags:
@@ -349,7 +354,8 @@ class ReportGenerator:
                     losthr+=hr
                     lostmin+=min
                     id+=1
-                    tag="Breakout Room"
+                    bno+=1
+                    tag="Breakout Room "+str(bno)
                 if(tag in srtag):
                     losttime=totalhr*60+totalmin-losthr*60-lostmin
                     hr=int(losttime/60)

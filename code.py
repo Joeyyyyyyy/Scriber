@@ -32,6 +32,8 @@ Developer Notes:
 ##(3.5.0) Added modes in WordFormat class
 ##(3.5.0) Added shortcut CTRL+Q for Word formatting
 ##(3.5.1) Added more words in the american words list and removed comments
+##(3.5.2) Report Generator mentions the no. of the breakout room
+##(3.5.2) Report Generator always adds a 5min Introductions at #1 by default
 """
 
 import tkinter as tk
