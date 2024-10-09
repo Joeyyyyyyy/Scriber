@@ -117,6 +117,7 @@ class ReportGenerator:
         if lines:
             # Extract the first line and convert it to uppercase
             first_line = lines[0].upper()
+            first_line=first_line.strip()
             if "TIMESTAMPS, " in first_line:
                 first_line = first_line.replace("TIMESTAMPS, ", "")
         
@@ -229,7 +230,7 @@ class ReportGenerator:
         return output_string
     
     def fullReport(self):
-        report="REPORT: "+self.title_line()+"\n\n\n"
+        report="*REPORT:* "+self.title_line()+"\n\n\n"
         music=self.extract_music()
         i=1
         for song in music:
@@ -237,7 +238,7 @@ class ReportGenerator:
             i=i+1
         closingaction = self.event_data_list[-1]
         report+="\nDuration: "+str(closingaction.hour)+"hr"+str(closingaction.minute)+"min\n\n"
-        report=report+self.topics()+self.generateReport("Live Demonstration")+self.generateReport("Exercise")+self.generateReport("Breakout Rooms Instructions")+self.generateReport("Short Break")+self.generateReport("Screen Share")+self.generateReport("Question")
+        report+=self.topics()+self.generateReport("Breakout Rooms Instructions")+self.generateReport("Question")+self.generateReport("Live Demonstration")+self.generateReport("Exercise")+self.generateReport("Short Break")+self.generateReport("Screen Share")
         pyperclip.copy(report)
         
     
