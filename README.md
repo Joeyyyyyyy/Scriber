@@ -6,7 +6,7 @@ Scriber is a powerful documentation tool designed to streamline the process of r
 ## Key Impact
 
 - **Time Efficiency**: Reduces upto 4 hours of manual work into just 10 minutes—a time savings of over 95%.
-- **Productivity Boost**: Increases overall productivity by automating up to 90% of the documentation process.
+- **Productivity Boost**: Increases overall productivity by automating up to 60% of the documentation process.
 - **Error Reduction**: Minimizes human error in timestamp recording and formatting, ensuring higher accuracy.
 
 ## Features
