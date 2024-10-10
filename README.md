@@ -21,4 +21,10 @@ With Scriber, what used to take hours can now be accomplished in mere minutes. J
 
 ---
 
+## How to Get Started?
+
+To use Scriber, simply download the latest release from the repository. And then, you will find an executable setup file 'Scriber_\<version\>_WIN_setup' among the extracted files. Run it to install the application on your system.
+
+---
+
 Feel free to contribute or report issues to improve Scriber. We welcome any suggestions or feedback that can help make Scriber even better for everyone!
