@@ -35,6 +35,7 @@ Developer Notes:
 ##(3.6.0) Report Generator mentions the no. of the breakout room
 ##(3.6.1) Report Generator always adds a 5min Introductions at #1 by default
 ##(3.6.1) Report Generator also has a Shares section.
+##(3.6.1) Added more words to american words database.
 """
 
 import tkinter as tk

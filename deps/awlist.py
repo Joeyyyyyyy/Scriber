@@ -1,5 +1,6 @@
-"""Set of common American words which can be used for word checking.
- O(1) time complexity for checking membership in sets, hence we chose sets
+"""
+Set of common American words which can be used for word checking.
+O(1) time complexity for checking membership in sets, hence we chose sets
 """
 american_words = {
     "gotta",
@@ -164,6 +165,8 @@ american_words = {
     "specialize",
     "sterilize",
     "moralize",
+    "moralizing",
+    "moralization",
     "vaporize",
     "skeptic",
     "esthetic",
@@ -181,6 +184,8 @@ american_words = {
     "ton ", "urbanization", "vandalize", "legalize", "romanticize", 
     "capsize", "agonize", "socialize", "characterize", "jeopardize", 
     "neutralize", "hypnotize", "standardize",
+    "pressurize","pressurizing","pressurization",
+    "normalize","normalizing","normalization",
     "Realization",
     "Organization",
     "Civilization",
@@ -189,7 +194,9 @@ american_words = {
     "Colonization",
     "Industrialization",
     "prioritize",
+    "prioritizing",
     "personalize",
+    "personalizing",
     "personalization",
     "Prioritization",
     "Globalization",
