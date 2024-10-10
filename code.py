@@ -16,7 +16,7 @@ Developer Notes:
 ##(2.2.1) Resolved issue with dropdown menu name settings
 ##(2.3.0) Secured the backup process
 ##(2.3.1) Removed colon from timestamps for consistency
-##(2.4.0) Added word checker for American English words
+##(2.4.0) Added word checker for American English words which can be toggled by keyboard shortcut (Ctrl+W)
 ##(2.4.0) Fixed extra space after timestamps
 ##(2.4.1) Added right-click context menu for text operations
 ##(2.5.0) Added Pause-Resume button for tracking lost time
@@ -32,8 +32,9 @@ Developer Notes:
 ##(3.5.0) Added modes in WordFormat class
 ##(3.5.0) Added shortcut CTRL+Q for Word formatting
 ##(3.5.1) Added more words in the american words list and removed comments
-##(3.5.2) Report Generator mentions the no. of the breakout room
-##(3.5.2) Report Generator always adds a 5min Introductions at #1 by default
+##(3.6.0) Report Generator mentions the no. of the breakout room
+##(3.6.1) Report Generator always adds a 5min Introductions at #1 by default
+##(3.6.1) Report Generator also has a Shares section.
 """
 
 import tkinter as tk

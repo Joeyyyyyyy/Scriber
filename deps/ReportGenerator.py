@@ -235,10 +235,12 @@ class ReportGenerator:
         i=1
         for song in music:
             report += "Music "+str(i)+": " + song + "\n"
-            i=i+1
+            i+=1
         closingaction = self.event_data_list[-1]
         report+="\nDuration: "+str(closingaction.hour)+"hr"+str(closingaction.minute)+"min\n\n"
-        report+=self.topics()+self.generateReport("Breakout Rooms Instructions")+self.generateReport("Question")+self.generateReport("Live Demonstration")+self.generateReport("Exercise")+self.generateReport("Short Break")+self.generateReport("Screen Share")
+        report+=self.topics()+self.generateReport("Breakout Rooms Instructions")+self.generateReport("Question")
+        report+=self.generateReport("Share")+self.generateReport("Live Demonstration")+self.generateReport("Exercise")
+        report+=self.generateReport("Short Break")+self.generateReport("Screen Share")
         pyperclip.copy(report)
         
     
@@ -259,6 +261,8 @@ class ReportGenerator:
         elif tag in srtag :
             report+="SHORT BREAKS\n\n"
             tag=srtag.copy()
+        elif tag == "Share" :
+            report+="SHARES\n\n"
         else:
             report+=tag.upper()+"\n\n"
         id=1
