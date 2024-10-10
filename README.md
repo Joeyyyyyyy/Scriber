@@ -19,8 +19,6 @@ Scriber is a powerful documentation tool designed to streamline the process of r
 
 With Scriber, what used to take hours can now be accomplished in mere minutes. Join the professionals who have already transformed their workflow with Scriber’s cutting-edge automation.
 
----
-
 ## How to Get Started?
 
 To use Scriber, simply download the latest release from the repository. And then, you will find an executable setup file 'Scriber_\<version\>_WIN_setup' among the extracted files. Run it to install the application on your system.
