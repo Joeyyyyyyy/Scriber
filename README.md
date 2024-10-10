@@ -3,6 +3,10 @@
 
 Scriber is a powerful documentation tool designed to streamline the process of recording timestamps and generating reports during seminars and live events. By automating repetitive tasks, Scriber drastically reduces manual effort, freeing up valuable time for more critical activities.
 
+## Technologies Used
+
+This application has been developed purely using python. It's UI is made using the Customtkinter library and relies on the regular expression re library for most of the formatting and data extraction tasks. win32clipboard and pyperclip libraries have been used for interacting with the system clipboard. I have used pyinstaller library to package all the programs and Inno Setup to create the installer.
+
 ## Key Impact
 
 - **Time Efficiency**: Reduces upto 4 hours of manual work into just 10 minutes—a time savings of over 95%.
@@ -26,3 +30,5 @@ To use Scriber, simply download the latest release from the repository. And then
 ---
 
 Feel free to contribute or report issues to improve Scriber. We welcome any suggestions or feedback that can help make Scriber even better for everyone!
+
+Contact me: @jjjj8912@gmail.com (Joel Joseph Justin)
