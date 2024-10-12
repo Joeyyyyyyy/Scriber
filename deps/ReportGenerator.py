@@ -345,7 +345,7 @@ class ReportGenerator:
         bno=0
         durevent=None
         
-        report=report+str(id)+") "+("*"+"Introductions"+"*") +" ("+"5min"+")"+"\n"
+        report=report+str(id)+") "+("*"+"Introductions"+"*") +" ("+"05min"+")"+"\n"
         id=id+1
         
         for idx, event in enumerate(self.event_data_list):
