@@ -403,15 +403,15 @@ if __name__== "__main__":
     # Sample string
     text = """
     *06:00 pm* (18min) Recording Starts. Music: hello how are you. 
-    *06:08 pm* (26min) Live Demonstration: Now that you have this knowledge and wisdom, there is no turning back. Every day, whatever is happening in your body, you’re going to associate it with the meridians. (Trainer: Dr Rangana)
+    *06:08 pm* (26min) Live Demonstration: Now that you have this knowledge and wisdom, there is no turning back. Every day, whatever is happening in your body, you’re going to associate it with the meridians. (Trainer: Dr Jane Doe)
     *06:13 pm* (31min) Screen Share: Liver Meridian Vitaliser, Liver Meridian Cleansing
     Breakout Rooms Instructions: Hi hello guys umma. Music: allalalla.
-    *06:18 pm* (36min) Live Demonstration: Who’s ready to work on the liver together? (Trainer: Dr Rangana)
+    *06:18 pm* (36min) Live Demonstration: Who’s ready to work on the liver together? (Trainer: Dr Doe)
     *07:09 pm* (01hr57min) Screen Share: Liver Meridian Diagram
     *07:09 pm* (01hr57min) Breakout Rooms Initiated. Recording pauses
     *07:59 pm* (02hr47min) Breakout Rooms End. Recording resumes
-    *08:53 pm* (03hr41min) Exercise: Liver Meridian Exercise (Delegate: Adrian LIM Peng Ann)
-    *09:10 pm* (03hr58min) Live Demonstration: Now that you have this knowledge and wisdom, there is no turning back. Every day, whatever is happening in your body, you’re going to associate it with the meridians. (Trainer: Dr Rangana)
+    *08:53 pm* (03hr41min) Exercise: Liver Meridian Exercise (Delegate: Joel)
+    *09:10 pm* (03hr58min) Live Demonstration: Now that you have this knowledge and wisdom, there is no turning back. Every day, whatever is happening in your body, you’re going to associate it with the meridians. (Trainer: Dr Jeanne)
     *09:12 pm* (04hr00min) Session Ends. Music: Jumping Around by Joel Joseph Justin.
     """
     print("Extracted Event Data:")
