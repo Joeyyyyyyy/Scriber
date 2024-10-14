@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Scriber"
-#define MyAppVersion "3.6.1"
+#define MyAppVersion "3.7.1"
 #define MyAppPublisher "JJJ"
 #define MyAppExeName "code.exe"
 
@@ -30,7 +30,7 @@ InfoAfterFile=C:\Users\jjjj8\OneDrive\Documents\GitHub\Scriber\Manual.txt
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 OutputDir=C:\Users\jjjj8\OneDrive\Documents\GitHub\Scriber
-OutputBaseFilename=Scriber_3.6.1_WIN_setup
+OutputBaseFilename=Scriber_3.7.1_WIN_setup
 SetupIconFile=C:\Users\jjjj8\Downloads\icons8-write-48.ico
 Compression=lzma
 SolidCompression=yes
