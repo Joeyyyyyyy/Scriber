@@ -1,7 +1,8 @@
 """
-Contains classes required for converting regular text into RTF. Converts text srrounded by asterisks into bold text.
+Contains classes required for converting regular text into RTF and vice-versa. 
 """
 
+from docx import Document
 import win32clipboard as wc
 import ctypes
 import re
@@ -180,6 +181,80 @@ class WordFormat():
             wc.SetClipboardData(CF_RTF, rtf_data.encode('windows-1252'))
         finally:
             wc.CloseClipboard()
+
+class WordExtractor():
+    def __init__(self,filepath:str):
+        super().__init__()
+        self.filepath=filepath
+        self.txtpath=self.convertor(self.driver(self.filepath))
+
+    # Function to extract text from the .docx file, surrounding bold text with asterisks and italic text with underscores
+    def extract_text_from_docx(self,docx_path):
+        doc = Document(docx_path)
+        full_text = []
+
+        for para in doc.paragraphs:
+            paragraph_text = []
+            for run in para.runs:
+                # Check if the text is bold and/or italic
+                text = run.text
+                if run.bold and run.italic:  # If text is both bold and italic
+                    paragraph_text.append(f"*_{text}_*")
+                elif run.bold:  # If text is bold
+                    paragraph_text.append(f"*{text}*")
+                elif run.italic:  # If text is italic
+                    paragraph_text.append(f"_{text}_")
+                else:  # Regular text
+                    paragraph_text.append(text)
+            full_text.append(' '.join(paragraph_text))
+        
+        return '\n'.join(full_text)
+
+    def clean_asterisks_in_place(self,file_path):
+        # Open the file and read it line by line
+        with open(file_path, 'r', encoding='utf-8') as file:
+            lines = file.readlines()
+        
+        # Define the regex pattern to find asterisks with only whitespace between them
+        pattern = r'\*\s*\*'
+        
+        # Create a new list to store cleaned lines
+        cleaned_lines = []
+        
+        # Loop through each line in the file
+        for line in lines:
+            # Remove any matches of the pattern (e.g., '* *' or '*    *')
+            cleaned_line = re.sub(pattern, '', line)
+            cleaned_lines.append(cleaned_line)
+        
+        # Write the cleaned lines back to the same file
+        with open(file_path, 'w', encoding='utf-8') as file:
+            file.writelines(cleaned_lines)
+                
+    def driver(self,filepath):
+        extracted_text = self.extract_text_from_docx(filepath)
+        output_txt_path = self.filepath.replace('.docx','_utf8_backup.txt')
+        with open(output_txt_path, 'w', encoding='utf-8') as txt_file:
+            txt_file.write(extracted_text)
+        self.clean_asterisks_in_place(output_txt_path)  
+        return output_txt_path 
+    
+    def convertor(self,input_file:str):
+        with open(input_file, 'r', encoding='utf-8') as infile:
+            # Read the file contents
+            content = infile.read()
+
+        output_file=input_file.replace('_utf8_backup.txt','.txt')
+        
+        # Open the output file in CP1252 encoding and write the content
+        with open(output_file, 'w', encoding='cp1252', errors='replace') as outfile:
+            # Write the content to the file in CP1252 encoding
+            outfile.write(content)
+        
+        return(output_file)
+    
+    def getPath(self):
+        return self.txtpath 
 
 # Driver Function for testing purposes
 if __name__ == "__main__":

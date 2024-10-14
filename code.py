@@ -35,7 +35,10 @@ Developer Notes:
 ##(3.6.0) Report Generator mentions the no. of the breakout room
 ##(3.6.1) Report Generator always adds a 5min Introductions at #1 by default
 ##(3.6.1) Report Generator also has a Shares section.
-##(3.6.1) Added more words to american words database.
+##(3.6.1) Added more words to american words dataset
+##(3.7.1) Added more words to american words dataset and made minor tweaks in report
+##(3.7.1) Added the docx extraction feature
+##(3.7.1) Made the Open File feature more secure
 """
 
 import tkinter as tk
@@ -46,7 +49,7 @@ from datetime import datetime, timedelta
 import os
 import customtkinter as ctk
 from deps.awlist import american_words
-from deps.format import WordFormat
+from deps.format import WordFormat, WordExtractor
 from deps.proofreader import WhatsAppChecker
 import tkinter.font as tkFont
 from deps.ReportGenerator import ReportGenerator as rg
@@ -81,7 +84,7 @@ class ChScriber(ctk.CTk):
         self.showhourmin = True
         
         # File Dropdown menu
-        self.functions=["Open","Save","Word Checker","Time Lost","Proofread","Export to Word","Generate Report","Display Time Elapsed (Active)"]
+        self.functions=["Open","Save","Word Checker","Time Lost","Proofread","Export to Word","Import from Word","Generate Report","Display Time Elapsed (Active)"]
         self.file_menu = ctk.CTkOptionMenu(self.toolbar, values=self.functions, command=lambda f=self.functions: self.handlefunctions(f))
         self.file_menu.pack(side="left", padx=10, pady=5)
         self.file_menu.set("File")
@@ -355,9 +358,22 @@ class ChScriber(ctk.CTk):
             self.proofread()
         elif functions== "Generate Report":
             self.report()
+        elif functions== "Import from Word":
+            self.extract_docx_text()
         else:
             print("Error")
     
+    def extract_docx_text(self):
+        try:
+            file_path = filedialog.askopenfilename(defaultextension=".docx", 
+                                            filetypes=[("Word Document", "*.docx"), 
+                                                        ("All files", "*.*")])
+            we=WordExtractor(file_path)
+            path=we.getPath()
+            self.open_file(path)
+        except Exception as e:
+            messagebox.showerror("Exception Occurred",str(e))
+        
     def report(self):
         try:
             ed= rg(self.text_area.get("1.0", "end-1c"))
@@ -446,19 +462,32 @@ class ChScriber(ctk.CTk):
                 self.auto_save_file()
             self.quit()
 
-    def open_file(self):
-        if self.file_path is None:
-            pass
-        else:
-            self.auto_save_file()
-        self.file_path = filedialog.askopenfilename(defaultextension=".txt", filetypes=[("Text files", "*.txt"), ("All files", "*.*")])
-        if self.file_path:
-            with open(self.file_path, "r") as file:
+    def open_file(self,path=None):
+        try:
+            backup_file_path=self.file_path
+            backup_text=self.text_area.get(1.0, tk.END)
+            
+            if self.file_path is None:
+                pass
+            else:
+                self.auto_save_file()
+            if path==None:
+                self.file_path = filedialog.askopenfilename(defaultextension=".txt", filetypes=[("Text files", "*.txt"), ("All files", "*.*")])
+            else:
+                self.file_path = path
+            if self.file_path:
+                with open(self.file_path, "r") as file:
+                    self.text_area.delete(1.0, tk.END)
+                    self.text_area.insert(tk.END, file.read())
+                self.title(f"Scriber - {self.file_path}")
+            else:
+                self.file_path=None
+        except Exception as e:
+                self.file_path=backup_file_path
                 self.text_area.delete(1.0, tk.END)
-                self.text_area.insert(tk.END, file.read())
-            self.title(f"Scriber - {self.file_path}")
-        else:
-            self.file_path=None
+                self.text_area.insert(tk.END,backup_text)
+                print_statement=str(e)+"\nUnable to open the file."
+                messagebox.showerror("Exception Ocurred", print_statement)
 
     def auto_save_file(self):
         if self.file_path is None:
@@ -506,6 +535,7 @@ class ChScriber(ctk.CTk):
                 
                 messagebox.showinfo("Backup", f"File has been created and will be saved at backup location: {backup_file_path}")
         except Exception as e:
+                self.file_path=None
                 print_statement=str(e)+" has occurred. Unable to save the file."
                 messagebox.showerror("Exception Ocurred", print_statement)
 

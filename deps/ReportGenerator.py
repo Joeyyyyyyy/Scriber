@@ -279,9 +279,9 @@ class ReportGenerator:
                             event = self.event_data_list[br+1]
                             br += 1
                     if(event.mention==""):
-                        report=report+str(id)+") "+event.duration+", "+event.timestamp+"-"+event.endtime+"\n"
+                        report=report+str(id)+") "+event.duration+" ("+event.timestamp+" - "+event.endtime+")\n"
                     else:
-                        report=report+str(id)+") "+event.mention+", "+event.duration+", "+event.timestamp+"-"+event.endtime+"\n"
+                        report=report+str(id)+") "+event.mention+", "+event.duration+" ("+event.timestamp+" - "+event.endtime+")\n"
                     id=id+1
                 
         if(id==1):
