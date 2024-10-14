@@ -96,6 +96,19 @@ Version History & Key Features:
 - Added some words into the american words dataset.
 - Removed unnecessary comments
 
+3.6.0:
+- Report Generator now mentions the number of the breakout room.
+
+3.6.1:
+- Report Generator always includes a 5-minute Introductions section at #1 by default.
+- Added a Shares section to the Report Generator.
+- Added more words to the American words dataset.
+
+3.7.1:
+- Further expanded the American words dataset and made minor tweaks to the report.
+- Added the docx extraction feature.
+- Enhanced the security of the Open File feature.
+
 ---
 
 Salient Features:
@@ -111,7 +124,7 @@ Salient Features:
 - Export: Has an amazing feature that will export the document to MS Word in the required format.
 - ProofReader: Proofreads for formatting mistakes and repeated timestamps.
 - Exporting: Has powerful features to convert text to RTF and send a copy to the clipboard.
-
+- Importing: Has powerful import feature for converting word documents into text files and manipulating it.
 ---
 
 Known Limitations:

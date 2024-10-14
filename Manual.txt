@@ -1,6 +1,7 @@
 Scriber User Manual
 
-Welcome to the Scriber, a comprehensive tool designed to help with timestamping, file management, and text editing. This manual will guide you through the features and functionalities of the program to maximize your efficiency and productivity.
+Welcome to the Scriber, a comprehensive tool designed to help with timestamping, file management, and text editing. 
+This manual will guide you through the features and functionalities of the program to maximize your efficiency and productivity.
 
 
 -----------------------------------------------------------------------------------
@@ -36,6 +37,7 @@ Features Overview
 
 14. Report Generator: Helps generate an extensive report about all the topics that were covered.
 
+15. Import from Word: Helps import text data from Word files and presents them in whatsapp format
 
 -----------------------------------------------------------------------------------
 
@@ -44,11 +46,13 @@ Using Scriber:
 
 1. File Management: Opening and Saving Files
 Open File: Access the file menu and choose "Open" to load a .txt file into the editor.
-Save File: Use the "Save" option from the file menu or press Ctrl + S to save your work. If no file is currently open, you will be prompted to save as a new file.
+Save File: Use the "Save" option from the file menu or press Ctrl + S to save your work. 
+If no file is currently open, you will be prompted to save as a new file.
 Backup Save: Files are securely backed up in a designated directory with a timestamped filename.
 
 2. Auto-Save
-This feature saves your work automatically in the background to prevent data loss. You do not need to manually trigger this, but always save your work before closing.
+This feature saves your work automatically in the background to prevent data loss. 
+You do not need to manually trigger this, but always save your work before closing.
 
 3. Pause-Resume Feature
 Press the Pause button to halt time tracking (useful during breaks). The button changes to Resume.
@@ -75,7 +79,8 @@ Re-enable or disable this by clicking the "Word Checker" option in the menu.
 Reads the entire document and alerts the user if there are repeated timestamps or ones with incorrect formatting.
 
 9.Export to Word
-Converts the file into Rich Text Format, removes asterisks and boldens the text that was surrounded by asterisks. After performing these tasks, the text is copied to the device's clipboard.
+Converts the file into Rich Text Format, removes asterisks and boldens the text that was surrounded by asterisks. 
+After performing these tasks, the text is copied to the device's clipboard.
 
 10. Undo Feature
 If you make a mistake, you can undo your last action with Ctrl + Z.
@@ -90,12 +95,20 @@ Paste: Paste from the clipboard.
 Before closing the application, you will be prompted to save your work. This ensures no progress is lost accidentally.
 
 13. Generate Report
-This advanced feature gets an extensive report on the event ready with the click of a button.
+This advanced feature gets an extensive report on the event ready with the click of a button. 
+However, it is very important that VLC format is followed for this feature to work perfectly.
+
+14. Import from Word
+This feature allows the user to extract text data from a docx file. 
+Two files are created: One is in UTF-8 format and the other is in cp1252 format.
+UTF-8 will preserve data perfectly while cp1252 might not. 
+However, Scriber can only read data in cp-1252 and hence that is the file that gets opened.
+Both the files will be saved in the same directory as the original docx file.
 
 Advanced Features
 
 1. Time Lost Calculation
-You can also manually input the time lost during breaks by selecting Time Lost from the file menu. If you didn't use the pause button properly.
+You can also manually input the time lost during breaks by selecting Time Lost from the file menu if you didn't use the pause button properly.
 The program will adjust the timestamp calculations based on the input, ensuring accurate session tracking.
 
 2. Replace Brackets with Time
