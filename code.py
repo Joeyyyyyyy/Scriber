@@ -166,6 +166,9 @@ class ChScriber(ctk.CTk):
             formatobject=wc.ensure_asterisks_with_tracking(text)
             mistakes=formatobject.mistakes
             repetitions=wc.find_duplicate_timestamps(text)
+            
+            del wc # Deleting objects after they are used
+            
             changes=formatobject.changes_count+ len(repetitions)
             
             if mistakes==[] and repetitions==[]:
@@ -196,6 +199,9 @@ class ChScriber(ctk.CTk):
             formatter= WordFormat()
             rtf_bold_text = formatter.generate_rtf_bold(text,mode=0) # Converts text to RTF 
             formatter.copy_rtf_to_clipboard(rtf_bold_text) # Copies RTF text with boldened timestamps into clipboard
+            
+            del formatter # deleting the object after it is used
+            
             asterisk_count = text.count('*')
             if asterisk_count%2 == 0 :
                 messagebox.showinfo("Copy", "Word Format for Timestamps Copied to Clipboard!")
@@ -212,6 +218,9 @@ class ChScriber(ctk.CTk):
             formatter= WordFormat()
             rtf_bold_text = formatter.generate_rtf_bold(text,mode=1) # Converts text to RTF 
             formatter.copy_rtf_to_clipboard(rtf_bold_text) # Copies RTF text with boldened timestamps into clipboard
+            
+            del formatter # deleting the object after it is used
+            
             messagebox.showinfo("Copy", "Word Format Copied to Clipboard!")            
         except Exception as e:
             print_statement=str(e)+" has occurred. Unable to copy the file :("
@@ -370,6 +379,7 @@ class ChScriber(ctk.CTk):
                                                         ("All files", "*.*")])
             we=WordExtractor(file_path)
             path=we.getPath()
+            del we                  # Deleting the object after it is used.
             self.open_file(path)
         except Exception as e:
             messagebox.showerror("Exception Occurred",str(e))
@@ -379,6 +389,8 @@ class ChScriber(ctk.CTk):
             ed= rg(self.text_area.get("1.0", "end-1c"))
             output=ed.extract_and_copy()
             ed.fullReport()
+            
+            del ed # deleting the object after it is used
             messagebox.showinfo("Event Report","Event Report copied to clipboard :)")
         except Exception as e:
             messagebox.showerror("Exception Occurred",str(e))
