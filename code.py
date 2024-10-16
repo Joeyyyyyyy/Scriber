@@ -39,6 +39,7 @@ Developer Notes:
 ##(3.7.1) Added more words to american words dataset and made minor tweaks in report
 ##(3.7.1) Added the docx extraction feature
 ##(3.7.1) Made the Open File feature more secure
+##(3.7.2) Added Object deletion for memory optimization
 """
 
 import tkinter as tk
