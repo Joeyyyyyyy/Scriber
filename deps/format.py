@@ -188,56 +188,86 @@ class WordExtractor():
         self.filepath=filepath
         self.txtpath=self.convertor(self.driver(self.filepath))
 
-    # Function to extract text from the .docx file, surrounding bold text with asterisks and italic text with underscores
-    def extract_text_from_docx(self,docx_path):
-        doc = Document(docx_path)
-        full_text = []
+    def is_numbered_list(self,paragraph):
+        # Check if the paragraph has numbering properties
+        numPr = paragraph._element.xpath('.//w:numPr')
+        return len(numPr) > 0
 
-        for para in doc.paragraphs:
-            paragraph_text = []
-            for run in para.runs:
-                # Check if the text is bold and/or italic
-                text = run.text
-                if run.bold and run.italic:  # If text is both bold and italic
-                    paragraph_text.append(f"*_{text}_*")
-                elif run.bold:  # If text is bold
-                    paragraph_text.append(f"*{text}*")
-                elif run.italic:  # If text is italic
-                    paragraph_text.append(f"_{text}_")
-                else:  # Regular text
-                    paragraph_text.append(text)
-            full_text.append(' '.join(paragraph_text))
-        
-        return '\n'.join(full_text)
+    def count_trailing_whitespace(self,s):
+        return len(s) - len(s.rstrip())
+    
+    def extract_text_from_word(self,file_path, output_txt_file):
+        # Open the Word document
+        doc = Document(file_path)
 
-    def clean_asterisks_in_place(self,file_path):
-        # Open the file and read it line by line
-        with open(file_path, 'r', encoding='utf-8') as file:
-            lines = file.readlines()
-        
-        # Define the regex pattern to find asterisks with only whitespace between them
-        pattern = r'\*\s*\*'
-        
-        # Create a new list to store cleaned lines
-        cleaned_lines = []
-        
-        # Loop through each line in the file
-        for line in lines:
-            # Remove any matches of the pattern (e.g., '* *' or '*    *')
-            cleaned_line = re.sub(pattern, '', line)
-            cleaned_lines.append(cleaned_line)
-        
-        # Write the cleaned lines back to the same file
-        with open(file_path, 'w', encoding='utf-8') as file:
-            file.writelines(cleaned_lines)
+        list_number = 0  # Initialize a counter for numbered lists
+
+        # Open the output text file in write mode
+        with open(output_txt_file, 'w', encoding='utf-8') as txt_file:
+            gap=""
+            # Loop through each paragraph in the document
+            for para in doc.paragraphs:
+                # Detect if the paragraph is a heading
+                if para.style.name.startswith('Heading'):
+                    txt_file.write(gap)
+                    gap=""
+                    txt_file.write(f"*{para.text.strip()}*\n")
+                    list_number=0
+                    continue  # Move to the next paragraph after writing the heading
                 
+                # Detect numbered lists or bullet point lists by checking for numbering properties
+                if self.is_numbered_list(para):
+                    if gap!="" and list_number!=0:
+                        gap=""
+                    if list_number == 0:  # First item in a new numbered list
+                        list_number = 1
+                    else:
+                        list_number += 1  # Increment the counter for each numbered list item
+                    line = f'{list_number}. '
+                    for run in para.runs:
+                        text_to_add = run.text
+                        whitecount=self.count_trailing_whitespace(text_to_add)
+                        if run.bold and text_to_add.strip() != '':
+                            text_to_add = f"*{text_to_add.strip()}*"+ ' '*whitecount  # Mark bold text with asterisks
+                        if run.italic and text_to_add.strip() != '':
+                            text_to_add = f"_{text_to_add.strip()}_"+ ' '*whitecount  # Mark italic text with underscores
+                        line += text_to_add
+                    txt_file.write(line + '\n')
+
+                else:
+                    backup_ln=list_number
+                    #list_number=0 # Reset the counter when leaving a numbered list
+                    # Ignore page breaks but preserve empty lines
+                    if 'PAGE' in para._element.xml:
+                        continue  # Skip page breaks only
+
+                    # For empty paragraphs, simply add a blank line
+                    if para.text.strip() == '':
+                        gap+='\n'
+                        continue  # Move to the next paragraph
+                    
+                    # list_number = 0  # Reset the counter when leaving a numbered list
+                    # Loop through each run in the paragraph to identify bold and italic text
+                    line = ""
+                    for run in para.runs:
+                        txt_file.write(gap)
+                        gap=""
+                        list_number=0
+                        text_to_add = run.text
+                        whitecount=self.count_trailing_whitespace(text_to_add)
+                        if run.bold and text_to_add.strip() != '':
+                            text_to_add = f"*{text_to_add.strip()}*"+ ' '*whitecount  # Mark bold text with asterisks
+                        if run.italic and text_to_add.strip() != '':
+                            text_to_add = f"_{text_to_add.strip()}_"+ ' '*whitecount  # Mark italic text with underscores
+                        line += text_to_add
+                    txt_file.write(line + '\n')
+
+        print(f"Text has been extracted and saved to {output_txt_file}")
+        
     def driver(self,filepath):
-        extracted_text = self.extract_text_from_docx(filepath)
         output_txt_path = self.filepath.replace('.docx','_utf8_backup.txt')
-        with open(output_txt_path, 'w', encoding='utf-8') as txt_file:
-            txt_file.write(extracted_text)
-        self.clean_asterisks_in_place(output_txt_path)  
-        return output_txt_path 
+        self.extract_text_from_word(filepath,output_txt_path)
+        return output_txt_path     
     
     def convertor(self,input_file:str):
         with open(input_file, 'r', encoding='utf-8') as infile:
@@ -250,11 +280,13 @@ class WordExtractor():
         with open(output_file, 'w', encoding='cp1252', errors='replace') as outfile:
             # Write the content to the file in CP1252 encoding
             outfile.write(content)
+
+        print("File conversion completed!")
         
         return(output_file)
     
     def getPath(self):
-        return self.txtpath 
+        return self.txtpath  
 
 # Driver Function for testing purposes
 if __name__ == "__main__":

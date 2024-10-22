@@ -378,10 +378,11 @@ class ChScriber(ctk.CTk):
             file_path = filedialog.askopenfilename(defaultextension=".docx", 
                                             filetypes=[("Word Document", "*.docx"), 
                                                         ("All files", "*.*")])
-            we=WordExtractor(file_path)
-            path=we.getPath()
-            del we                  # Deleting the object after it is used.
-            self.open_file(path)
+            if file_path:
+                we=WordExtractor(file_path)
+                path=we.getPath()
+                del we                  # Deleting the object after it is used.
+                self.open_file(path)
         except Exception as e:
             messagebox.showerror("Exception Occurred",str(e))
         
