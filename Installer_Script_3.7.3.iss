@@ -4,17 +4,17 @@
 #define MyAppName "Scriber"
 #define MyAppVersion "3.7.3"
 #define MyAppPublisher "JJJ"
-#define MyAppExeName "MyProg-x64.exe"
+#define MyAppExeName "Scriber.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{C687914E-94E4-4C5F-86F9-364B62C33C48}
+AppId={{743241FC-C15A-4DB9-A89E-2B82AEB91440}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
 AppPublisher={#MyAppPublisher}
-DefaultDirName={autopf}\{#MyAppName}
+DefaultDirName={autopf}\My Program
 ; "ArchitecturesAllowed=x64compatible" specifies that Setup cannot run
 ; on anything but x64 and Windows 11 on Arm.
 ArchitecturesAllowed=x64compatible
@@ -48,9 +48,8 @@ Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Program Files (x86)\Inno Setup 6\Examples\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\jjjj8\OneDrive\Documents\GitHub\Scriber\dist\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\jjjj8\OneDrive\Documents\GitHub\Scriber\build\*"; DestDir: "{app}/build"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\jjjj8\OneDrive\Documents\GitHub\Scriber\deps\*"; DestDir: "{app}/deps"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
