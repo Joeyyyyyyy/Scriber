@@ -1,1 +1,1 @@
-pyinstaller --add-data "C:/Users/jjjj8/AppData/Local/Programs/Python/Python37/Lib/site-packages/customtkinter/assets;customtkinter/assets" --onefile -w --icon=logo.ico code.py
+pyinstaller --name Scriber --add-data "C:/Users/jjjj8/AppData/Local/Programs/Python/Python37/Lib/site-packages/customtkinter/assets;customtkinter/assets" --onefile -w --icon=logo.ico code.py
