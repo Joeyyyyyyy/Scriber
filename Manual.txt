@@ -72,7 +72,7 @@ Use the Mentions dropdown to insert predefined text for trainers or delegates.
 Use the Tags dropdown to insert session activities or event markers such as "Break," "Exercise," or "Story."
 
 7. Word Checker
-Trigger the Word Checker using the file menu or Ctrl + W. This feature highlights American English words from a predefined list.
+Activate the Word Checker using the file menu or Ctrl + W. This feature highlights American English words from a predefined list.
 Re-enable or disable this by clicking the "Word Checker" option in the menu.
 
 8.ProofReader
@@ -96,7 +96,7 @@ Before closing the application, you will be prompted to save your work. This ens
 
 13. Generate Report
 This advanced feature gets an extensive report on the event ready with the click of a button. 
-However, it is very important that VLC format is followed for this feature to work perfectly.
+However, it is very important that VLC format is followed in the Timestamps for this feature to work perfectly.
 
 14. Import from Word
 This feature allows the user to extract text data from a docx file. 
