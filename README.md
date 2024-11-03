@@ -1,6 +1,8 @@
 
 # Scriber
 
+![Screenshot of Scriber](./images/scriber1.png)
+
 Scriber is a powerful documentation tool designed to streamline the process of recording timestamps and generating reports during seminars and live events. By automating repetitive tasks, Scriber drastically reduces manual effort, freeing up valuable time for more critical activities.
 
 ## Technologies Used
