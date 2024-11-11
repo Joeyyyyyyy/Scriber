@@ -1,0 +1,5 @@
+# Ignore __pycache__ in the deps folder
+deps/__pycache__/
+
+# Ignore the entire venv folder
+venv/
