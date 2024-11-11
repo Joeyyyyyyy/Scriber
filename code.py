@@ -161,7 +161,15 @@ class ChScriber(ctk.CTk):
         self.time_lost= None
 
     # Proofreading function to check incorrect formatting and
-    def proofread(self):
+    def proofread(self) -> None:
+        """Run a proofreading check on the content of the text area.
+
+        Uses the WhatsAppChecker class to detect mistakes in the formatting of timestamps 
+        and duplicated timestamps. Shows a message with the results.
+
+        Raises:
+            Exception: If any error occurs during proofreading.
+        """
         try:
             wc= WhatsAppChecker()
             text=self.text_area.get("1.0", "end-1c")
@@ -195,7 +203,12 @@ class ChScriber(ctk.CTk):
         #self.text_area.insert("1.0", newtext)
 
     
-    def copy_word_format(self):
+    def copy_word_format(self) -> None:
+        """Convert text to RTF format with bolded timestamps and copy it to clipboard.
+
+        Raises:
+            Exception: If any error occurs during conversion or copying.
+        """
         try:
             text=self.text_area.get("1.0", "end-1c")
             formatter= WordFormat()
@@ -214,7 +227,12 @@ class ChScriber(ctk.CTk):
             print_statement=str(e)+" has occurred. Unable to copy the file :("
             messagebox.showerror("Exception Ocurred", print_statement)
             
-    def gformatter(self):
+    def gformatter(self) -> None:
+        """Convert text to RTF format with a specific mode and copy to clipboard.
+
+        Raises:
+            Exception: If any error occurs during conversion or copying.
+        """
         try:
             text=self.text_area.get("1.0", "end-1c")
             formatter= WordFormat()
@@ -229,7 +247,15 @@ class ChScriber(ctk.CTk):
             messagebox.showerror("Exception Ocurred", print_statement)
             
     
-    def pause_resume(self):
+    def pause_resume(self) -> None:
+        """Toggle the recording pause/resume state, updating the text area with timestamp details.
+
+        Sets or clears the pause time and updates the UI button text accordingly. Inserting 
+        a pause or resume message to the text area.
+
+        Raises:
+            Exception: If any error occurs during file auto-saving.
+        """
         if self.pause_button.cget("text") == "Pause":
             # Change button text to "Resume"
             self.pause_button.configure(text="Resume",fg_color="green", hover_color="#1E5128")  
@@ -268,24 +294,36 @@ class ChScriber(ctk.CTk):
             self.auto_save_file()
 
 
-    def copy_text(self):
-        # Copy selected text to the clipboard
+    def copy_text(self) -> None:
+        """Copy selected text from the text area to clipboard."""
         self.text_area.event_generate("<Control-c>")
 
-    def cut_text(self):
-        # Cut selected text to the clipboard
+    def cut_text(self) -> None:
+        """Cut selected text from the text area to clipboard."""
         self.text_area.event_generate("<Control-x>")
 
 
-    def paste_text(self):
-        # Paste text from the clipboard
+    def paste_text(self) -> None:
+        """Paste text from clipboard into the text area."""
         self.text_area.event_generate("<Control-v>")
 
-    def show_context_menu(self, event):
+    def show_context_menu(self, event: tk.Event) -> None:
+        """Display the context menu on right-click.
+
+        Args:
+            event (tk.Event): The event object for the right-click action.
+        """
         self.context_menu.post(event.x_root, event.y_root)
         
-    # Function to toggle spelling check and highlight American English words
-    def check_spelling(self):
+    def check_spelling(self) -> None:
+        """Toggle spell check and highlight American English words in the text area.
+
+        Highlights all American English words in the text area or removes highlights 
+        if already checked. Manages the Word Checker status.
+
+        Raises:
+            Exception: If any error occurs during spell checking.
+        """
         try:
             if self.spell_checked:
                 # Remove all highlights if already checked
@@ -317,7 +355,8 @@ class ChScriber(ctk.CTk):
             messagebox.showerror("Exception Ocurred", print_statement)    
             
             
-    def set_hourmin(self):
+    def set_hourmin(self) -> None:
+        """Toggle the display of time elapsed since the recording start time."""
         if self.showhourmin:
             current_options = list(self.file_menu.cget("values"))
             current_options[current_options.index("Display Time Elapsed (Active)")] = "Display Time Elapsed (Inactive)"
@@ -330,7 +369,12 @@ class ChScriber(ctk.CTk):
             self.showhourmin=True
 
     
-    def copy_prompt(self, name):
+    def copy_prompt(self, name: str) -> None:
+        """Copy a predefined AI prompt to the clipboard.
+
+        Args:
+            name (str): The name of the prompt to copy.
+        """
         self.prompts_menu.set("AI Prompts")
         prompt1="Refine the grammar and punctuations but do not change the wordings, terminology and format:"
         prompt2="Combine all the back to back dialogs said by the same person into a single dialog, correcting the grammatical errors and mistakes made by transcript AI. the output should be in the form of a conversation:"
@@ -341,17 +385,31 @@ class ChScriber(ctk.CTk):
         pyperclip.copy(prompt)
         
     
-    def insert_mention(self, word):
+    def insert_mention(self, word: str) -> None:
+        """Insert a selected mention into the text area.
+
+        Args:
+            word (str): The mention text to insert.
+        """
         self.mentions_menu.set("Mentions")
         self.text_area.insert(tk.INSERT, word)
         
-    def insert_tag(self, word):
+    def insert_tag(self, word: str) -> None:
+        """Insert a selected tag into the text area.
+
+        Args:
+            word (str): The tag text to insert.
+        """
         self.tags_menu.set("Tags")
         word=word+": "
         self.text_area.insert(tk.INSERT, word)
         
-    # Handling File Menu Functions
-    def handlefunctions(self,functions):
+    def handlefunctions(self, functions: str) -> None:
+        """Handle file menu function selections.
+
+        Args:
+            functions (str): The selected function name from the menu.
+        """
         self.file_menu.set("File")
         if functions == "Open":
             self.open_file()
@@ -374,7 +432,12 @@ class ChScriber(ctk.CTk):
         else:
             print("Error")
     
-    def extract_docx_text(self):
+    def extract_docx_text(self) -> None:
+        """Extract text from a selected .docx file and open it in the text area.
+
+        Raises:
+            Exception: If an error occurs while opening or reading the .docx file.
+        """
         try:
             file_path = filedialog.askopenfilename(defaultextension=".docx", 
                                             filetypes=[("Word Document", "*.docx"), 
@@ -387,7 +450,14 @@ class ChScriber(ctk.CTk):
         except Exception as e:
             messagebox.showerror("Exception Occurred",str(e))
         
-    def report(self):
+    def report(self) -> None:
+        """Generate an event report and copy it to the clipboard.
+
+        Uses the ReportGenerator class to create a report from the text area's content.
+
+        Raises:
+            Exception: If an error occurs during report generation or copying.
+        """
         try:
             ed= rg(self.text_area.get("1.0", "end-1c"))
             output=ed.extract_and_copy()
@@ -398,7 +468,12 @@ class ChScriber(ctk.CTk):
         except Exception as e:
             messagebox.showerror("Exception Occurred",str(e))
            
-    def insert_timestamp(self, value=None):
+    def insert_timestamp(self, value: str = None) -> None:
+        """Prompt for and set the start time, updating the UI button label.
+
+        Args:
+            value (str, optional): A predefined time value (optional).
+        """
         timestamp = simpledialog.askstring("Input", "Enter time in HH:MM format (24-hour):")
         if timestamp:
             try:
@@ -411,7 +486,12 @@ class ChScriber(ctk.CTk):
             except ValueError:
                 messagebox.showerror("Invalid format", "Please enter a valid time in HH:MM format.")
                 
-    def set_timelost(self, value=None):
+    def set_timelost(self, value: str = None) -> None:
+        """Set a custom value for the time lost during pauses.
+
+        Args:
+            value (str, optional): A time lost value in minutes (optional).
+        """
         dialog="Current time lost is : "+str(self.time_lost) +"\nEnter time lost in MINUTES : "
         lost=None
         if self.pause_time==None:
@@ -432,7 +512,9 @@ class ChScriber(ctk.CTk):
             except ValueError:
                 messagebox.showerror("Invalid input","Please enter a valid number of minutes.")
 
-    def hourmin(self):
+    def hourmin(self) -> None:
+        """Calculate and format the time elapsed since the start time."""
+        
         current_time = datetime.now()
         current_time=current_time.replace(second=0, microsecond=0)
         given_time = current_time.replace(hour=self.s_hour, minute=self.s_minute, second=0, microsecond=0)
@@ -448,13 +530,23 @@ class ChScriber(ctk.CTk):
         else:
             self.time_difference_str = f"{hours_diff:02}hr{minutes_diff:02}min"
 
-    def get_day_suffix(self, day):
+    def get_day_suffix(self, day: int) -> str:
+        """Return the ordinal suffix for a given day.
+
+        Args:
+            day (int): The day of the month.
+
+        Returns:
+            str: The ordinal suffix for the day (e.g., 'st', 'nd', 'rd', 'th').
+        """
         if 4 <= day <= 20 or 24 <= day <= 30:
             return "th"
         else:
             return {1: "st", 2: "nd", 3: "rd"}.get(day % 10, "th")
 
-    def insert_default_text(self):
+    def insert_default_text(self) -> None:
+        """Insert default introductory text, including the current date, into the text area."""
+        
         current_time = time.localtime()
         day = current_time.tm_mday
         month = time.strftime("%B", current_time)
@@ -468,7 +560,8 @@ class ChScriber(ctk.CTk):
         )
         self.text_area.insert(tk.END, default_text)
 
-    def on_closing(self):
+    def on_closing(self) -> None:
+        """Handle application closure with a save confirmation dialog."""
         response = messagebox.askyesnocancel("Exit", "Are you sure that you want to exit?")
         if response:
             if self.file_path is None:
@@ -477,7 +570,15 @@ class ChScriber(ctk.CTk):
                 self.auto_save_file()
             self.quit()
 
-    def open_file(self,path=None):
+    def open_file(self, path: str = None) -> None:
+        """Open a text file and load its content into the text area.
+
+        Args:
+            path (str, optional): File path to open; if None, prompt user for file.
+
+        Raises:
+            Exception: If any error occurs while opening the file.
+        """
         try:
             backup_file_path=self.file_path
             backup_text=self.text_area.get(1.0, tk.END)
@@ -504,7 +605,8 @@ class ChScriber(ctk.CTk):
                 print_statement=str(e)+"\nUnable to open the file."
                 messagebox.showerror("Exception Ocurred", print_statement)
 
-    def auto_save_file(self):
+    def auto_save_file(self) -> None:
+        """Auto-save the current content of the text area to the file path."""
         if self.file_path is None:
             self.save_as_file()
         else:
@@ -514,7 +616,12 @@ class ChScriber(ctk.CTk):
             except:
                 pass
 
-    def save_file(self):
+    def save_file(self) -> None:
+        """Save the current content of the text area to the file path, with confirmation.
+
+        Raises:
+            Exception: If any error occurs while saving the file.
+        """
         if self.file_path is None:
             self.save_as_file()
         else:
@@ -526,7 +633,12 @@ class ChScriber(ctk.CTk):
                 print_statement=str(e)+" has occurred. Unable to save the file."
                 messagebox.showerror("Exception Ocurred", print_statement)
 
-    def save_as_file(self):
+    def save_as_file(self) -> None:
+        """Save the current content to a new file path, prompting the user to select a location.
+
+        Raises:
+            Exception: If any error occurs while saving the file.
+        """
         try:
             self.file_path = filedialog.asksaveasfilename(defaultextension=".txt", filetypes=[("Text files", "*.txt"), ("All files", "*.*")])
             if self.file_path:
@@ -555,7 +667,12 @@ class ChScriber(ctk.CTk):
                 messagebox.showerror("Exception Ocurred", print_statement)
 
 
-    def replace_brackets_with_time(self, event=None):
+    def replace_brackets_with_time(self, event: tk.Event = None) -> None:
+        """Replace empty brackets in the text area with the current time.
+
+        Args:
+            event (tk.Event, optional): The event triggering the replacement (default: None).
+        """
         current_view = self.text_area.yview()
         start_idx = self.text_area.search("()", "1.0", tk.END)
         if start_idx:

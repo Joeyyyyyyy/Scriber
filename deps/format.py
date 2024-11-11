@@ -11,8 +11,15 @@ class WordFormat():
     def __init__(self):
         super().__init__()
         
-    def escape_special_characters(self,text):
-        """Escape special characters for RTF format with fallback."""
+    def escape_special_characters(self, text: str) -> str:
+        """Escapes special characters for RTF format with fallbacks.
+
+        Args:
+            text (str): The input text to escape.
+
+        Returns:
+            str: The text with special characters escaped for RTF compatibility.
+        """
         replacements = {
             '\\': '\\\\',        # Escape backslashes
             '{': '\\{',          # Escape opening curly braces
@@ -55,8 +62,15 @@ class WordFormat():
             text = text.replace(key, value)
         return text
     
-    def title_line(self,text):
-        """Extract the first line, convert it to uppercase, and append it back to the original text."""
+    def title_line(self, text: str) -> str:
+        """Converts the first line of the text to uppercase and appends it back.
+
+        Args:
+            text (str): The input text.
+
+        Returns:
+            str: The text with the first line capitalized and formatted.
+        """
         lines = text.splitlines()
 
         if lines:
@@ -72,13 +86,29 @@ class WordFormat():
         
         return text  # If no lines exist, return the original text
 
-    def remove_empty_lines(self,text):
-        """Remove empty lines from the input text."""
+    def remove_empty_lines(self, text: str) -> str:
+        """Removes empty lines from the input text.
+
+        Args:
+            text (str): The input text.
+
+        Returns:
+            str: The text without empty lines.
+        """
         lines = text.splitlines()
         non_empty_lines = [line for line in lines if line.strip()]
         return '\n'.join(non_empty_lines)
     
-    def process_text(self,text,mode=0):
+    def process_text(self, text: str, mode: int = 0) -> str:
+        """Processes text for RTF formatting based on the mode specified.
+
+        Args:
+            text (str): The input text to process.
+            mode (int): The processing mode (0 or 1) that determines formatting rules.
+
+        Returns:
+            str: The processed RTF text.
+        """
         lines = text.split('\par')  # Split the string into lines
         ntext=""
         # Apply functions to each line and join them back
@@ -153,8 +183,16 @@ class WordFormat():
         formatted_string = re.sub(pattern, replace, doc)
         return formatted_string
 
-    def generate_rtf_bold(self,text,mode=0):
-        """Generate RTF format text."""
+    def generate_rtf_bold(self, text: str, mode: int = 0) -> str:
+        """Generates RTF-formatted text with optional bold and formatting modes.
+
+        Args:
+            text (str): The input text to format.
+            mode (int): Optional; 0 for processing Time Stamps, 1 for regular processing.
+
+        Returns:
+            str: The RTF formatted text.
+        """
         if mode==0:
             text=self.remove_empty_lines(text)
             text=self.title_line(text)
@@ -170,8 +208,12 @@ class WordFormat():
         # Combine header, bolded text, normal text, and footer
         return rtf_header + rtf + normal_text + r"\par " + rtf_footer
 
-    def copy_rtf_to_clipboard(self,rtf_data):
-        """Copy the RTF data to the clipboard."""
+    def copy_rtf_to_clipboard(self, rtf_data: str) -> None:
+        """Copies the RTF-formatted data to the system clipboard.
+
+        Args:
+            rtf_data (str): The RTF data to copy.
+        """
         CF_RTF = ctypes.windll.user32.RegisterClipboardFormatW("Rich Text Format")
         
         try:
@@ -196,7 +238,13 @@ class WordExtractor():
     def count_trailing_whitespace(self,s):
         return len(s) - len(s.rstrip())
     
-    def extract_text_from_word(self,file_path, output_txt_file):
+    def extract_text_from_word(self, file_path: str, output_txt_file: str) -> None:
+        """Extracts text from a Word document and saves it to a text file.
+
+        Args:
+            file_path (str): The path to the Word document.
+            output_txt_file (str): The output path for the extracted text file.
+        """
         # Open the Word document
         doc = Document(file_path)
 
@@ -264,12 +312,29 @@ class WordExtractor():
 
         print(f"Text has been extracted and saved to {output_txt_file}")
         
-    def driver(self,filepath):
+
+    def driver(self, filepath: str) -> str:
+        """Processes a Word document and extracts text to a UTF-8 encoded text file.
+
+        Args:
+            filepath (str): The path to the Word document.
+
+        Returns:
+            str: Path to the extracted UTF-8 text file.
+        """
         output_txt_path = self.filepath.replace('.docx','_utf8_backup.txt')
         self.extract_text_from_word(filepath,output_txt_path)
         return output_txt_path     
     
-    def convertor(self,input_file:str):
+    def convertor(self, input_file: str) -> str:
+        """Converts a UTF-8 text file to CP1252 encoding.
+
+        Args:
+            input_file (str): The path to the input UTF-8 text file.
+
+        Returns:
+            str: Path to the converted CP1252 text file.
+        """
         with open(input_file, 'r', encoding='utf-8') as infile:
             # Read the file contents
             content = infile.read()
@@ -285,7 +350,12 @@ class WordExtractor():
         
         return(output_file)
     
-    def getPath(self):
+    def getPath(self) -> str:
+        """Retrieves the path to the converted text file.
+
+        Returns:
+            str: Path to the converted CP1252 text file.
+        """
         return self.txtpath  
 
 # Driver Function for testing purposes
