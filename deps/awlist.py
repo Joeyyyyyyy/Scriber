@@ -3,6 +3,7 @@ Set of common American words which can be used for word checking.
 O(1) time complexity for checking membership in sets, hence we chose sets
 """
 american_words = {
+    "signaling",
     "unraveling",
     "verbalize",
     "verbalizing",
