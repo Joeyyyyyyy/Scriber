@@ -5,7 +5,7 @@ O(1) time complexity for checking membership in sets, hence we chose sets
 american_words = {
     "internalize",
     "internalization",
-    "internalizing
+    "internalizing",
     "signaling",
     "unraveling",
     "verbalize",
