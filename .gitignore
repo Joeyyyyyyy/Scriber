@@ -10,3 +10,6 @@ __pycache__
 # Ignore application folders
 dist
 build
+
+# Ignore installer folder
+installer
