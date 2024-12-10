@@ -240,7 +240,8 @@ class ReportGenerator:
         report+="\nDuration: "+str(closingaction.hour)+"hr"+str(closingaction.minute)+"min\n\n"
         report+=self.topics()+self.generateReport("Breakout Rooms Instructions")+self.generateReport("Question")
         report+=self.generateReport("Share")+self.generateReport("Live Demonstration")+self.generateReport("Exercise")
-        report+=self.generateReport("Short Break")+self.generateReport("Screen Share")
+        report+=self.generateReport("Short Break")+self.generateReport("Screen Share")+self.generateReport("Story")
+        report+=self.generateReport("Main Teaching")
         pyperclip.copy(report)
         
     
@@ -261,6 +262,9 @@ class ReportGenerator:
         elif tag in srtag :
             report+="SHORT BREAKS\n\n"
             tag=srtag.copy()
+        elif tag=="Live Demonstration":
+            report+="LIVE DEMONSTRATIONS\n\n"
+            tag={"Live Demonstration","Live demonstration"}
         elif tag == "Share" :
             report+="SHARES\n\n"
         else:
@@ -279,9 +283,9 @@ class ReportGenerator:
                             event = self.event_data_list[br+1]
                             br += 1
                     if(event.mention==""):
-                        report=report+str(id)+") "+event.duration+" ("+event.timestamp+" - "+event.endtime+")\n"
+                        report=report+str(id)+". "+event.duration+" ("+event.timestamp+" - "+event.endtime+")\n"
                     else:
-                        report=report+str(id)+") "+event.mention+", "+event.duration+" ("+event.timestamp+" - "+event.endtime+")\n"
+                        report=report+str(id)+". "+event.mention+", "+event.duration+" ("+event.timestamp+" - "+event.endtime+")\n"
                     id=id+1
                 
         if(id==1):
@@ -293,7 +297,7 @@ class ReportGenerator:
                 if(tag=="Screen Share" and event.sequence_tag=="Share"):
                     pass
                 else:
-                    report=report+str(id)+") "+event.content+"\n\n"
+                    report=report+str(id)+". "+event.content+"\n\n"
                     id=id+1
         return(report)    
     
@@ -345,7 +349,7 @@ class ReportGenerator:
         bno=0
         durevent=None
         
-        report=report+str(id)+") "+("*"+"Introductions"+"*") +" ("+"05min"+")"+"\n"
+        report=report+str(id)+". "+("*"+"Introductions"+"*") +" ("+"05min"+")"+"\n"
         id=id+1
         
         for idx, event in enumerate(self.event_data_list):
@@ -355,7 +359,7 @@ class ReportGenerator:
                     losttime=totalhr*60+totalmin-losthr*60-lostmin
                     hr=int(losttime/60)
                     min=losttime%60
-                    report+=str(id)+") _*Total Time Taken: "+(str(hr)+"hr" if hr>0 else "")+str(min)+"min*_\n\n"
+                    report+=str(id)+". _*Total Time Taken: "+(str(hr)+"hr" if hr>0 else "")+str(min)+"min*_\n\n"
                     losthr+=hr
                     lostmin+=min
                     id+=1
@@ -365,7 +369,7 @@ class ReportGenerator:
                     losttime=totalhr*60+totalmin-losthr*60-lostmin
                     hr=int(losttime/60)
                     min=losttime%60
-                    report+=str(id)+") _*Total Time Taken: "+(str(hr)+"hr" if hr>0 else "")+str(min)+"min*_\n\n"
+                    report+=str(id)+". _*Total Time Taken: "+(str(hr)+"hr" if hr>0 else "")+str(min)+"min*_\n\n"
                     lost=self.extract_minutes(event.duration)
                     losthr+=hr+int(lost/60)
                     lostmin+=min+int(lost%60)
@@ -384,16 +388,23 @@ class ReportGenerator:
                     lost=self.extract_minutes(durevent.duration)
                     losthr+=int(lost/60)
                     lostmin+=int(lost%60)
-                  
-                report=report+str(id)+") "+(("*"+tag+"*") if "Screen Shar" not in tag else "")+(": " if "Screen Shar" not in tag and "Short Break" not in tag else "")+((event.content.split('.')[0]) if "Short Break" not in tag else "")+" ("+durevent.duration+")"+"\n"
-                id=id+1
+                
+                content_title=event.content.split('.')[0] if "Screen Shar" not in tag else event.content  
+                report += (
+                    str(id) + ". " +
+                    (("*" + tag + "*") if "Screen Shar" not in tag else "") +
+                    (": " if "Screen Shar" not in tag and "Short Break" not in tag else "") +
+                    ((content_title) if "Short Break" not in tag else "") +
+                    " (" + durevent.duration + ")" + "\n"
+                )
+                id += 1
                 if(event.sequence_tag in brtag):
-                    report+=str(id)+") "+"Breakout Room Debrief (min)\n"
+                    report+=str(id)+". "+"Breakout Room Debrief (min)\n"
                     id=id+1
                 totalduration+=self.extract_minutes(durevent.duration)
                 totalhr=int(totalduration/60)
                 totalmin=totalduration%60
-        report+=str(id)+") _*Total Time Taken: "+str(totalhr)+"hr"+str(totalmin)+"min*_\n\n"+seperator
+        report+=str(id)+". _*Total Time Taken: "+str(totalhr)+"hr"+str(totalmin)+"min*_\n\n"+seperator
         return(report)    
         
 

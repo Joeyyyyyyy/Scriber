@@ -42,6 +42,7 @@ Developer Notes:
 ##(3.7.2) Added Object deletion for memory optimization
 ##(3.7.3) Patched the docx extraction feature
 ##(3.7.4) Created custom dialog boxes
+##(3.8.1) Improved the report generation
 """
 
 import tkinter as tk
