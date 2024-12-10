@@ -3,3 +3,10 @@ deps/__pycache__/
 
 # Ignore the entire venv folder
 venv/
+
+# Ignore __pycache__
+__pycache__
+
+# Ignore application folders
+dist
+build

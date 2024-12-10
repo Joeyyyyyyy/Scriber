@@ -55,6 +55,7 @@ from deps.format import WordFormat, WordExtractor
 from deps.proofreader import WhatsAppChecker
 import tkinter.font as tkFont
 from deps.ReportGenerator import ReportGenerator as rg
+from deps.customdialog import CustomDialog
 
 # Initialize customtkinter
 ctk.set_appearance_mode("dark")  # Modes: "System" (default), "Dark", "Light"
@@ -474,7 +475,20 @@ class ChScriber(ctk.CTk):
         Args:
             value (str, optional): A predefined time value (optional).
         """
-        timestamp = simpledialog.askstring("Input", "Enter time in HH:MM format (24-hour):")
+        #timestamp = simpledialog.askstring("Input", "Enter time in HH:MM format (24-hour):")
+        timestamp = CustomDialog(
+            self,
+            title="Input",
+            font_size=12,
+            font_family="Calibri",
+            text_color="darkblue",
+            background_color="#FFFFFF", 
+            button_color="#F0F0F0", 
+            button_hover_color="lightblue",  
+            box_width=380,
+            box_height=100,
+            txt="Enter time in HH:MM format (24-hour):",
+        ).result
         if timestamp:
             try:
                 valid_time = datetime.strptime(timestamp, "%H:%M")
@@ -495,7 +509,19 @@ class ChScriber(ctk.CTk):
         dialog="Current time lost is : "+str(self.time_lost) +"\nEnter time lost in MINUTES : "
         lost=None
         if self.pause_time==None:
-            lost = simpledialog.askstring("Input", dialog)
+            lost = CustomDialog(
+                self,
+                title="Input",
+                font_size=12,
+                font_family="Calibri",
+                text_color="darkblue",
+                background_color="#FFFFFF", 
+                button_color="#F0F0F0", 
+                button_hover_color="lightblue",  
+                box_width=380,
+                box_height=115,
+                txt=dialog,
+            ).result
         else:
             messagebox.showerror("Warning","Manipulating time lost value when paused might cause errors.")
         if lost:
