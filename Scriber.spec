@@ -5,7 +5,7 @@ a = Analysis(
     ['code.py'],
     pathex=[],
     binaries=[],
-    datas=[('C:/Users/jjjj8/OneDrive/Documents/GitHub/Scriber/venv/Lib/site-packages/customtkinter/assets', 'customtkinter/assets')],
+    datas=[('C:/Users/jjjj8/OneDrive/Documents/GitHub/Scriber/.venv/Lib/site-packages/customtkinter/assets', 'customtkinter/assets')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},

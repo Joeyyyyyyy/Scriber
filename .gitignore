@@ -3,6 +3,7 @@ deps/__pycache__/
 
 # Ignore the entire venv folder
 venv/
+.venv/
 
 # Ignore __pycache__
 __pycache__
@@ -10,6 +11,7 @@ __pycache__
 # Ignore application folders
 dist
 build
+Scriber.spec
 
 # Ignore installer folder
 installer
